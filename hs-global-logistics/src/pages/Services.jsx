@@ -57,7 +57,7 @@ export default function Services() {
             <div className="eyebrow">01 — Dispatch Services</div>
             <h2>Dispatch support that keeps your trucks loaded</h2>
             <p className="text-muted" style={{ margin: '16px 0 26px', fontSize: '1.05rem' }}>
-              Our experienced dispatch team handles the details of every load, so you can focus on driving. From booking to invoicing, we\u2019re your partner on every mile.
+              Our experienced dispatch team handles the details of every load, so you can focus on driving. From booking to invoicing, we're your partner on every mile.
             </p>
             <ul className="feature-list">
               {dispatchFeatures.map((f) => (
@@ -88,7 +88,7 @@ export default function Services() {
               </div>
               <div className="trailer-detail-body">
                 <h3>Dry Van Trailers</h3>
-                <p className="text-muted">Durable, weatherproof trailers built for general freight — from retail goods to packaged materials. Available in 48\u2019 and 53\u2019 lengths.</p>
+                <p className="text-muted">Durable, weatherproof trailers built for general freight — from retail goods to packaged materials. Available in 48' and 53' lengths.</p>
                 <ul className="feature-list-sm">
                   <li>Ideal for palletized &amp; boxed freight</li>
                   <li>Roll-up and swing doors available</li>

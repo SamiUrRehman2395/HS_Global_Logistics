@@ -59,16 +59,17 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="hero">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="hero-photo-wrap"
-          >
-            <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo ken-burns" />
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="hero-photo-wrap"
+        >
+          <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo ken-burns" />
+          <div className="hero-photo-fade" />
+        </motion.div>
 
+        <div className="container">
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="hero-below">
             <h1 className="visually-hidden">Reliable Dispatch &amp; Trailer Rental Solutions — HS Global Logistics</h1>
             <p className="hero-sub">
@@ -229,25 +230,35 @@ export default function Home() {
 
       <style>{`
         .hero {
-          padding: 48px 0 30px;
+          padding: 0 0 30px;
           background: linear-gradient(180deg, #EEF7F6 0%, var(--bg) 60%);
         }
         .hero-photo-wrap {
-          border-radius: var(--radius-lg);
+          position: relative;
+          width: 100%;
           overflow: hidden;
-          box-shadow: var(--shadow-lg);
+          line-height: 0;
         }
         .hero-photo {
           width: 100%;
-          height: auto;
-          max-height: 640px;
+          height: clamp(320px, 62vw, 680px);
           object-fit: cover;
+          object-position: 30% 25%;
           display: block;
+        }
+        .hero-photo-fade {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 90px;
+          background: linear-gradient(180deg, transparent 0%, var(--bg) 100%);
+          pointer-events: none;
         }
         .hero-below {
           text-align: center;
           max-width: 640px;
-          margin: 36px auto 0;
+          margin: 40px auto 0;
         }
         .hero-sub {
           font-size: 1.1rem;
@@ -431,7 +442,7 @@ export default function Home() {
           .why-photo img { min-height: 260px; }
         }
         @media (max-width: 860px) {
-          .hero-photo { max-height: 420px; }
+          .hero-photo { object-position: 35% 20%; }
         }
         @media (max-width: 640px) {
           .services-grid { grid-template-columns: 1fr; }

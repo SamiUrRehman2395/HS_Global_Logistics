@@ -50,7 +50,7 @@ export default function Contact() {
         <div className="container">
           <motion.div initial="hidden" animate="show" variants={fadeUp}>
             <div className="eyebrow">Contact Us</div>
-            <h1>Let\u2019s get your business moving</h1>
+            <h1>Let's get your business moving</h1>
             <p className="page-hero-sub">Reach out for dispatch support, trailer rentals, or general questions — our team responds fast.</p>
           </motion.div>
         </div>
@@ -142,7 +142,7 @@ export default function Contact() {
               </button>
 
               {status === 'success' && (
-                <p className="form-note success">Thanks — your message has been sent. We\u2019ll be in touch shortly.</p>
+                <p className="form-note success">Thanks — your message has been sent. We'll be in touch shortly.</p>
               )}
               {status === 'error' && (
                 <p className="form-note error">{errorMsg}</p>

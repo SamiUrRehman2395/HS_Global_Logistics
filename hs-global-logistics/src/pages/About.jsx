@@ -51,7 +51,7 @@ export default function About() {
             <div className="eyebrow" style={{ justifyContent: 'center' }}>Our Mission</div>
             <h2>Simplifying logistics so carriers can focus on the road</h2>
             <p className="text-muted" style={{ marginTop: 18, fontSize: '1.08rem' }}>
-              We started HS Global Logistics with a simple belief: independent drivers and small fleets deserve the same level of dispatch expertise and equipment quality as the largest carriers. Today, we support owner-operators and growing fleets with dependable dispatch services and a well-maintained trailer fleet, backed by a team that treats every load like it\u2019s our own.
+              We started HS Global Logistics with a simple belief: independent drivers and small fleets deserve the same level of dispatch expertise and equipment quality as the largest carriers. Today, we support owner-operators and growing fleets with dependable dispatch services and a well-maintained trailer fleet, backed by a team that treats every load like it's our own.
             </p>
           </motion.div>
         </div>
