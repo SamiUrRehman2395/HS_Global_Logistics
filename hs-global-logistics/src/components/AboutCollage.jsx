@@ -82,18 +82,18 @@ export default function AboutCollage() {
         .collage-img--a {
           grid-column: 1 / 2;
           grid-row: 1 / 3;
-          aspect-ratio: 3 / 4;
+          aspect-ratio: 4 / 5;
         }
         .collage-img--b {
           grid-column: 2 / 3;
           grid-row: 1 / 2;
-          aspect-ratio: 5 / 4;
+          aspect-ratio: 4 / 3;
           align-self: start;
         }
         .collage-img--c {
           grid-column: 2 / 3;
           grid-row: 2 / 3;
-          aspect-ratio: 5 / 4;
+          aspect-ratio: 4 / 3;
         }
         .collage-badge {
           position: absolute;

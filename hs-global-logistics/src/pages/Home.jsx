@@ -65,7 +65,7 @@ export default function Home() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="hero-photo-wrap"
         >
-          <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo ken-burns" />
+          <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo" />
           <div className="hero-photo-fade" />
         </motion.div>
 
@@ -92,7 +92,7 @@ export default function Home() {
 
       {/* ABOUT PREVIEW */}
       <section className="section about-preview">
-        <div className="container grid-2">
+        <div className="container grid-2 about-preview-grid">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}>
             <div className="eyebrow">About Us</div>
             <h2>A trusted partner in the transportation industry</h2>
@@ -231,6 +231,7 @@ export default function Home() {
       <style>{`
         .hero {
           padding: 0 0 30px;
+          margin-top: -76px;
           background: linear-gradient(180deg, #EEF7F6 0%, var(--bg) 60%);
         }
         .hero-photo-wrap {
@@ -241,9 +242,9 @@ export default function Home() {
         }
         .hero-photo {
           width: 100%;
-          height: clamp(320px, 62vw, 680px);
+          height: clamp(220px, 62vw, 680px);
           object-fit: cover;
-          object-position: 30% 25%;
+          object-position: center 16%;
           display: block;
         }
         .hero-photo-fade {
@@ -442,7 +443,7 @@ export default function Home() {
           .why-photo img { min-height: 260px; }
         }
         @media (max-width: 860px) {
-          .hero-photo { object-position: 35% 20%; }
+          .hero-photo { object-position: center 14%; }
         }
         @media (max-width: 640px) {
           .services-grid { grid-template-columns: 1fr; }

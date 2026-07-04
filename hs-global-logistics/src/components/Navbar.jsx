@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const links = [
@@ -11,19 +11,24 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [location.pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
   }, [open])
 
+  const transparent = isHome && !scrolled && !open
+
   return (
-    <header className={`navbar ${scrolled ? 'is-scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? 'is-scrolled' : ''} ${transparent ? 'is-transparent' : ''}`}>
       <div className="container navbar-inner">
         <NavLink to="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand-mark">
@@ -93,6 +98,23 @@ export default function Navbar() {
           border-bottom-color: var(--border);
           box-shadow: 0 4px 20px rgba(11,42,74,0.06);
         }
+        .navbar.is-transparent {
+          background: transparent;
+          backdrop-filter: none;
+          border-bottom-color: transparent;
+          box-shadow: none;
+        }
+        .navbar.is-transparent::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 170px;
+          background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.22) 55%, transparent 100%);
+          pointer-events: none;
+          z-index: -1;
+        }
         .navbar-inner {
           display: flex;
           align-items: center;
@@ -121,6 +143,7 @@ export default function Navbar() {
           height: 100%;
           border-radius: 50%;
           object-fit: cover;
+          box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
         }
         .brand-text {
           font-family: var(--font-display);
@@ -129,6 +152,11 @@ export default function Navbar() {
           color: var(--navy);
           letter-spacing: 0.01em;
           line-height: 1.1;
+          transition: color 0.25s ease;
+        }
+        .navbar.is-transparent .brand-text {
+          color: #FFFFFF;
+          text-shadow: 0 1px 6px rgba(0,0,0,0.35);
         }
         .brand-text em {
           display: block;
@@ -137,6 +165,9 @@ export default function Navbar() {
           font-size: 0.7rem;
           letter-spacing: 0.16em;
           color: var(--amber-dark);
+        }
+        .navbar.is-transparent .brand-text em {
+          color: var(--amber);
         }
         .nav-links {
           display: flex;
@@ -154,6 +185,18 @@ export default function Navbar() {
         }
         .nav-link:hover { color: var(--navy); background: var(--bg-alt); }
         .nav-link.active { color: var(--navy); background: var(--teal-light); }
+        .navbar.is-transparent .nav-link {
+          color: rgba(255,255,255,0.92);
+          text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+        .navbar.is-transparent .nav-link:hover {
+          color: #FFFFFF;
+          background: rgba(255,255,255,0.16);
+        }
+        .navbar.is-transparent .nav-link.active {
+          color: #FFFFFF;
+          background: rgba(255,255,255,0.22);
+        }
         .nav-actions {
           display: flex;
           align-items: center;
@@ -168,8 +211,13 @@ export default function Navbar() {
           font-size: 0.9rem;
           color: var(--navy);
           white-space: nowrap;
+          transition: color 0.25s ease;
         }
         .nav-phone svg { color: var(--amber); }
+        .navbar.is-transparent .nav-phone {
+          color: #FFFFFF;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
         .nav-cta { padding: 12px 22px; font-size: 0.88rem; }
         .nav-burger {
           display: none;
@@ -185,7 +233,10 @@ export default function Navbar() {
           height: 2.5px;
           background: var(--navy);
           border-radius: 2px;
-          transition: transform 0.25s ease, opacity 0.25s ease;
+          transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+        }
+        .navbar.is-transparent .nav-burger span {
+          background: #FFFFFF;
         }
         .nav-burger span:nth-child(1) { width: 24px; }
         .nav-burger span:nth-child(2) { width: 24px; }

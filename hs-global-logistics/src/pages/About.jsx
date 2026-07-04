@@ -27,7 +27,7 @@ export default function About() {
   return (
     <>
       <section className="page-hero">
-        <div className="container grid-2">
+        <div className="container grid-2 about-preview-grid">
           <motion.div initial="hidden" animate="show" variants={fadeUp}>
             <div className="eyebrow">About HS Global Logistics</div>
             <h1>Built by people who understand the road</h1>
