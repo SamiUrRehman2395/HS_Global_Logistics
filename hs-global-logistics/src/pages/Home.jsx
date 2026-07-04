@@ -4,8 +4,11 @@ import RouteLine from '../components/RouteLine.jsx'
 import CTASection from '../components/CTASection.jsx'
 import TestimonialCarousel from '../components/TestimonialCarousel.jsx'
 import FAQAccordion from '../components/FAQAccordion.jsx'
+import AboutCollage from '../components/AboutCollage.jsx'
 import dryvan from '../assets/dryvan.jpg'
 import reefer from '../assets/reefer.jpg'
+import heroImg from '../assets/hero.jpg'
+import whyUsImg from '../assets/why-choose-us.jpg'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -56,10 +59,18 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="hero">
-        <div className="container hero-inner">
-          <motion.div initial="hidden" animate="show" variants={fadeUp} className="hero-copy">
-            <div className="eyebrow">Nationwide Dispatch &amp; Trailer Solutions</div>
-            <h1>Reliable Dispatch &amp; Trailer Rental Solutions</h1>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="hero-photo-wrap"
+          >
+            <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo" />
+          </motion.div>
+
+          <motion.div initial="hidden" animate="show" variants={fadeUp} className="hero-below">
+            <h1 className="visually-hidden">Reliable Dispatch &amp; Trailer Rental Solutions — HS Global Logistics</h1>
             <p className="hero-sub">
               HS Global Logistics delivers efficient dispatch services and high-quality trailer rentals to keep your business moving — on time, every time.
             </p>
@@ -72,42 +83,6 @@ export default function Home() {
               <div><strong>50</strong><span>States covered</span></div>
               <div><strong>2</strong><span>Trailer types on demand</span></div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-            className="hero-art"
-            aria-hidden="true"
-          >
-            <svg viewBox="0 0 520 420" fill="none" className="hero-svg">
-              <defs>
-                <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#E4F8F6" />
-                  <stop offset="100%" stopColor="#F7F9FC" />
-                </linearGradient>
-              </defs>
-              <rect x="0" y="0" width="520" height="420" rx="28" fill="url(#skyGrad)" />
-              <path d="M0 330 Q130 300 260 330 T520 330" stroke="#0B2A4A" strokeOpacity="0.08" strokeWidth="60" fill="none" />
-              <path d="M20 300 Q160 250 260 290 T500 260" stroke="#FF7A3D" strokeWidth="4" strokeDasharray="2 16" strokeLinecap="round" fill="none" />
-              <circle cx="20" cy="300" r="7" fill="#0B2A4A" />
-              <circle cx="500" cy="260" r="9" fill="#FF7A3D" />
-              <g transform="translate(150,150)">
-                <rect x="0" y="40" width="150" height="80" rx="8" fill="#0B2A4A" />
-                <rect x="150" y="60" width="60" height="60" rx="6" fill="#123B63" />
-                <rect x="158" y="70" width="26" height="24" rx="3" fill="#E4F8F6" />
-                <circle cx="40" cy="128" r="16" fill="#172033" />
-                <circle cx="40" cy="128" r="7" fill="#F7F9FC" />
-                <circle cx="180" cy="128" r="16" fill="#172033" />
-                <circle cx="180" cy="128" r="7" fill="#F7F9FC" />
-                <rect x="14" y="52" width="122" height="14" rx="3" fill="#FF7A3D" />
-                <rect x="14" y="72" width="122" height="8" rx="3" fill="#1B4E80" />
-                <rect x="14" y="86" width="122" height="8" rx="3" fill="#1B4E80" />
-              </g>
-              <circle cx="440" cy="90" r="34" fill="#0FB5AE" fillOpacity="0.16" />
-              <circle cx="70" cy="80" r="20" fill="#FF7A3D" fillOpacity="0.16" />
-            </svg>
           </motion.div>
         </div>
       </section>
@@ -131,19 +106,8 @@ export default function Home() {
             <NavLink to="/about" className="btn btn-ghost" style={{ marginTop: 28 }}>Learn More About Us</NavLink>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="stat-cluster">
-            <div className="stat-card stat-card--lg">
-              <span className="stat-num">100%</span>
-              <span className="stat-label">Load compliance handled for you</span>
-            </div>
-            <div className="stat-card">
-              <span className="stat-num">24/7</span>
-              <span className="stat-label">Dispatcher assistance</span>
-            </div>
-            <div className="stat-card">
-              <span className="stat-num">2</span>
-              <span className="stat-label">Trailer types: dry van &amp; reefer</span>
-            </div>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}>
+            <AboutCollage />
           </motion.div>
         </div>
       </section>
@@ -214,14 +178,19 @@ export default function Home() {
             <div className="eyebrow" style={{ justifyContent: 'center' }}>Why Choose Us</div>
             <h2>Why Choose HS Global Logistics?</h2>
           </motion.div>
-          <div className="why-grid">
-            {whyUs.map((w, i) => (
-              <motion.div key={w.title} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: i * 0.06 }} className="why-item">
-                <div className="why-icon">{w.icon}</div>
-                <h3>{w.title}</h3>
-                <p className="text-muted">{w.text}</p>
-              </motion.div>
-            ))}
+          <div className="why-layout">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="why-photo">
+              <img src={whyUsImg} alt="HS Global Logistics trailer ready for the road" loading="lazy" />
+            </motion.div>
+            <div className="why-grid">
+              {whyUs.map((w, i) => (
+                <motion.div key={w.title} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: i * 0.06 }} className="why-item">
+                  <div className="why-icon">{w.icon}</div>
+                  <h3>{w.title}</h3>
+                  <p className="text-muted">{w.text}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -256,35 +225,43 @@ export default function Home() {
 
       <style>{`
         .hero {
-          padding: 64px 0 40px;
+          padding: 48px 0 30px;
           background: linear-gradient(180deg, #EEF7F6 0%, var(--bg) 60%);
         }
-        .hero-inner {
-          display: grid;
-          grid-template-columns: 1.05fr 0.95fr;
-          gap: 56px;
-          align-items: center;
+        .hero-photo-wrap {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-lg);
         }
-        .hero-copy h1 {
-          font-size: clamp(2.1rem, 4.6vw, 3.3rem);
-          margin-bottom: 20px;
+        .hero-photo {
+          width: 100%;
+          height: auto;
+          max-height: 640px;
+          object-fit: cover;
+          display: block;
+        }
+        .hero-below {
+          text-align: center;
+          max-width: 640px;
+          margin: 36px auto 0;
         }
         .hero-sub {
           font-size: 1.1rem;
           color: var(--text-muted);
-          max-width: 480px;
-          margin-bottom: 32px;
+          margin-bottom: 30px;
         }
         .hero-actions {
           display: flex;
           gap: 14px;
           flex-wrap: wrap;
-          margin-bottom: 40px;
+          justify-content: center;
+          margin-bottom: 36px;
         }
         .hero-stats {
           display: flex;
-          gap: 36px;
+          gap: 44px;
           flex-wrap: wrap;
+          justify-content: center;
         }
         .hero-stats strong {
           display: block;
@@ -296,7 +273,6 @@ export default function Home() {
           font-size: 0.85rem;
           color: var(--text-muted);
         }
-        .hero-svg { width: 100%; height: auto; }
 
         .value-pills {
           display: flex;
@@ -377,10 +353,28 @@ export default function Home() {
         .trailer-card-body { padding: 26px 26px 30px; }
         .trailer-card-body h3 { margin-bottom: 8px; }
 
+        .why-layout {
+          display: grid;
+          grid-template-columns: 0.85fr 1.15fr;
+          gap: 40px;
+          align-items: center;
+        }
+        .why-photo {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+        }
+        .why-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          min-height: 340px;
+        }
         .why-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 28px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 26px;
         }
         .why-item {
           padding: 8px;
@@ -411,18 +405,18 @@ export default function Home() {
 
         @media (max-width: 980px) {
           .services-grid { grid-template-columns: repeat(2, 1fr); }
-          .why-grid { grid-template-columns: repeat(2, 1fr); }
+          .why-layout { grid-template-columns: 1fr; }
+          .why-photo img { min-height: 260px; }
         }
         @media (max-width: 860px) {
-          .hero-inner { grid-template-columns: 1fr; }
-          .hero-art { order: -1; }
+          .hero-photo { max-height: 420px; }
         }
         @media (max-width: 640px) {
           .services-grid { grid-template-columns: 1fr; }
           .why-grid { grid-template-columns: 1fr; }
           .trailer-grid { grid-template-columns: 1fr; }
-          .stat-cluster { grid-template-columns: 1fr; }
           .hero-stats { gap: 24px; }
+          .hero-actions { flex-direction: column; align-items: stretch; }
         }
       `}</style>
     </>

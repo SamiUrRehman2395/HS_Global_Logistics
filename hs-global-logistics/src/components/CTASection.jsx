@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
+import ctaBg from '../assets/cta-banner.jpg'
 
 export default function CTASection() {
   return (
-    <section className="cta-banner">
+    <section className="cta-banner" style={{ backgroundImage: `url(${ctaBg})` }}>
+      <div className="cta-overlay" />
       <div className="container cta-inner">
         <div>
           <h2>Reliable logistics solutions that move your business forward</h2>
@@ -13,29 +15,15 @@ export default function CTASection() {
 
       <style>{`
         .cta-banner {
-          background: linear-gradient(120deg, var(--navy) 0%, var(--navy-3) 100%);
           position: relative;
           overflow: hidden;
+          background-size: cover;
+          background-position: center;
         }
-        .cta-banner::before {
-          content: '';
+        .cta-overlay {
           position: absolute;
-          width: 420px;
-          height: 420px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(255,122,61,0.35), transparent 70%);
-          top: -180px;
-          right: -120px;
-        }
-        .cta-banner::after {
-          content: '';
-          position: absolute;
-          width: 320px;
-          height: 320px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(15,181,174,0.3), transparent 70%);
-          bottom: -160px;
-          left: -100px;
+          inset: 0;
+          background: linear-gradient(110deg, rgba(11,42,74,0.94) 0%, rgba(11,42,74,0.86) 45%, rgba(11,42,74,0.55) 100%);
         }
         .cta-inner {
           position: relative;
@@ -43,7 +31,7 @@ export default function CTASection() {
           align-items: center;
           justify-content: space-between;
           gap: 32px;
-          padding: 72px 24px;
+          padding: 84px 24px;
         }
         .cta-inner h2 {
           color: var(--white);
@@ -52,11 +40,11 @@ export default function CTASection() {
           margin-bottom: 12px;
         }
         .cta-inner p {
-          color: rgba(255,255,255,0.72);
+          color: rgba(255,255,255,0.78);
           max-width: 480px;
         }
         @media (max-width: 760px) {
-          .cta-inner { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
+          .cta-inner { flex-direction: column; align-items: flex-start; padding: 60px 24px; }
         }
       `}</style>
     </section>

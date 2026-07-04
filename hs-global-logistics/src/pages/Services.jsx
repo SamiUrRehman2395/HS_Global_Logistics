@@ -4,6 +4,7 @@ import RouteLine from '../components/RouteLine.jsx'
 import CTASection from '../components/CTASection.jsx'
 import dryvan from '../assets/dryvan.jpg'
 import reefer from '../assets/reefer.jpg'
+import dispatchImg from '../assets/dispatch-services.jpg'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -65,27 +66,8 @@ export default function Services() {
             </ul>
             <NavLink to="/contact" className="btn btn-primary" style={{ marginTop: 26 }}>Get Dispatch Support</NavLink>
           </motion.div>
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="service-visual">
-            <svg viewBox="0 0 480 400" fill="none">
-              <rect width="480" height="400" rx="24" fill="#E4F8F6" />
-              <path d="M40 260 Q160 200 240 250 T440 210" stroke="#FF7A3D" strokeWidth="4" strokeDasharray="2 16" strokeLinecap="round" fill="none" />
-              <circle cx="40" cy="260" r="8" fill="#0B2A4A" />
-              <circle cx="440" cy="210" r="10" fill="#FF7A3D" />
-              <g transform="translate(150,120)">
-                <rect x="0" y="30" width="130" height="70" rx="8" fill="#0B2A4A" />
-                <rect x="130" y="46" width="52" height="54" rx="6" fill="#123B63" />
-                <rect x="138" y="55" width="22" height="20" rx="3" fill="#E4F8F6" />
-                <circle cx="34" cy="106" r="14" fill="#172033" />
-                <circle cx="34" cy="106" r="6" fill="#F7F9FC" />
-                <circle cx="158" cy="106" r="14" fill="#172033" />
-                <circle cx="158" cy="106" r="6" fill="#F7F9FC" />
-                <rect x="12" y="42" width="106" height="12" rx="3" fill="#FF7A3D" />
-                <rect x="12" y="60" width="106" height="7" rx="3" fill="#1B4E80" />
-                <rect x="12" y="72" width="106" height="7" rx="3" fill="#1B4E80" />
-              </g>
-              <circle cx="90" cy="90" r="24" fill="#FF7A3D" fillOpacity="0.18" />
-              <circle cx="400" cy="320" r="30" fill="#0FB5AE" fillOpacity="0.22" />
-            </svg>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="service-photo">
+            <img src={dispatchImg} alt="HS Global Logistics dispatch and freight coordination" loading="lazy" />
           </motion.div>
         </div>
       </section>
@@ -228,6 +210,18 @@ export default function Services() {
           margin-top: 1px;
         }
         .service-visual svg { width: 100%; height: auto; }
+        .service-photo {
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+        }
+        .service-photo img {
+          width: 100%;
+          height: 100%;
+          min-height: 300px;
+          object-fit: cover;
+          display: block;
+        }
 
         .trailer-detail-grid {
           display: grid;

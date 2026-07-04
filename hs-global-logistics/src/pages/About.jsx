@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import RouteLine from '../components/RouteLine.jsx'
 import CTASection from '../components/CTASection.jsx'
+import AboutCollage from '../components/AboutCollage.jsx'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -35,25 +36,8 @@ export default function About() {
             </p>
             <NavLink to="/contact" className="btn btn-primary" style={{ marginTop: 10 }}>Work With Us</NavLink>
           </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.15 }} aria-hidden="true">
-            <svg viewBox="0 0 480 380" fill="none">
-              <rect width="480" height="380" rx="24" fill="#E4F8F6" />
-              <circle cx="380" cy="80" r="46" fill="#FF7A3D" fillOpacity="0.18" />
-              <circle cx="70" cy="300" r="36" fill="#0FB5AE" fillOpacity="0.22" />
-              <path d="M30 220 Q160 170 240 210 T450 170" stroke="#FF7A3D" strokeWidth="4" strokeDasharray="2 16" strokeLinecap="round" fill="none" />
-              <g transform="translate(140,110)">
-                <rect x="0" y="35" width="140" height="75" rx="8" fill="#0B2A4A" />
-                <rect x="140" y="52" width="56" height="58" rx="6" fill="#123B63" />
-                <rect x="149" y="62" width="24" height="22" rx="3" fill="#E4F8F6" />
-                <circle cx="36" cy="116" r="15" fill="#172033" />
-                <circle cx="36" cy="116" r="6" fill="#F7F9FC" />
-                <circle cx="170" cy="116" r="15" fill="#172033" />
-                <circle cx="170" cy="116" r="6" fill="#F7F9FC" />
-                <rect x="12" y="47" width="116" height="12" rx="3" fill="#FF7A3D" />
-                <rect x="12" y="65" width="116" height="7" rx="3" fill="#1B4E80" />
-                <rect x="12" y="78" width="116" height="7" rx="3" fill="#1B4E80" />
-              </g>
-            </svg>
+          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.15 }}>
+            <AboutCollage />
           </motion.div>
         </div>
       </section>
