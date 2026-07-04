@@ -120,6 +120,24 @@ h1, h2, h3, h4 {
   border: none;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.35) 42%, rgba(255,255,255,0.35) 48%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  transform: translateX(120%);
 }
 
 .btn:active {
@@ -212,6 +230,69 @@ h1, h2, h3, h4 {
   outline: 3px solid var(--teal);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Image hover zoom — wrap an <img> in a parent with overflow:hidden and this class */
+.img-zoom {
+  overflow: hidden;
+  display: block;
+}
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+  will-change: transform;
+}
+.img-zoom:hover img {
+  transform: scale(1.07);
+  filter: brightness(1.03);
+}
+
+/* Card lift on hover */
+.hover-lift {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Underline sweep for inline text links */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Slow, subtle Ken Burns zoom for large hero/banner photos */
+@keyframes kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+.ken-burns {
+  animation: kenburns 18s ease-in-out infinite alternate;
+}
+
+/* Icon nudge on hover, used inside buttons/links with an icon span */
+.icon-nudge {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+*:hover > .icon-nudge {
+  transform: translateX(3px);
 }
 
 @media (prefers-reduced-motion: reduce) {

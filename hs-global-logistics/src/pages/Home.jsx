@@ -66,7 +66,7 @@ export default function Home() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="hero-photo-wrap"
           >
-            <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo" />
+            <img src={heroImg} alt="HS Global Logistics truck on the road at sunset — Moving Things Forward: Dispatch, Rentals, Solutions That Deliver" className="hero-photo ken-burns" />
           </motion.div>
 
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="hero-below">
@@ -153,15 +153,19 @@ export default function Home() {
           </motion.div>
 
           <div className="trailer-grid">
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="card trailer-card">
-              <img src={dryvan} alt="HS Global Logistics dry van trailers parked at a warehouse dock" loading="lazy" />
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="card trailer-card hover-lift">
+              <div className="img-zoom">
+                <img src={dryvan} alt="HS Global Logistics dry van trailers parked at a warehouse dock" loading="lazy" />
+              </div>
               <div className="trailer-card-body">
                 <h3>Dry Van Trailers</h3>
                 <p className="text-muted">Ideal for transporting general freight safely and efficiently across every route.</p>
               </div>
             </motion.div>
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: 0.1 }} className="card trailer-card">
-              <img src={reefer} alt="HS Global Logistics refrigerated reefer trailers with Thermo King units at a loading dock" loading="lazy" />
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: 0.1 }} className="card trailer-card hover-lift">
+              <div className="img-zoom">
+                <img src={reefer} alt="HS Global Logistics refrigerated reefer trailers with Thermo King units at a loading dock" loading="lazy" />
+              </div>
               <div className="trailer-card-body">
                 <h3>Refrigerated Trailers</h3>
                 <p className="text-muted">Designed for temperature-sensitive shipments, keeping goods fresh in transit.</p>
@@ -179,7 +183,7 @@ export default function Home() {
             <h2>Why Choose HS Global Logistics?</h2>
           </motion.div>
           <div className="why-layout">
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="why-photo">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="why-photo img-zoom">
               <img src={whyUsImg} alt="HS Global Logistics trailer ready for the road" loading="lazy" />
             </motion.div>
             <div className="why-grid">
@@ -336,6 +340,10 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           margin-bottom: 18px;
+          transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+          transform: scale(1.1) rotate(-4deg);
         }
         .service-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
 
@@ -363,6 +371,10 @@ export default function Home() {
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-md);
+          transition: box-shadow 0.3s ease;
+        }
+        .why-photo:hover {
+          box-shadow: var(--shadow-lg);
         }
         .why-photo img {
           width: 100%;
@@ -378,6 +390,10 @@ export default function Home() {
         }
         .why-item {
           padding: 8px;
+          transition: transform 0.25s ease;
+        }
+        .why-item:hover {
+          transform: translateX(4px);
         }
         .why-icon {
           font-size: 1.6rem;
@@ -390,6 +406,12 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           margin-bottom: 16px;
+          transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        }
+        .why-item:hover .why-icon {
+          transform: scale(1.08);
+          background: var(--teal-light);
+          border-color: transparent;
         }
         .why-item h3 { font-size: 1.05rem; margin-bottom: 8px; }
 

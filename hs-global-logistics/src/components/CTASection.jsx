@@ -3,7 +3,8 @@ import ctaBg from '../assets/cta-banner.jpg'
 
 export default function CTASection() {
   return (
-    <section className="cta-banner" style={{ backgroundImage: `url(${ctaBg})` }}>
+    <section className="cta-banner">
+      <div className="cta-bg ken-burns" style={{ backgroundImage: `url(${ctaBg})` }} />
       <div className="cta-overlay" />
       <div className="container cta-inner">
         <div>
@@ -17,6 +18,10 @@ export default function CTASection() {
         .cta-banner {
           position: relative;
           overflow: hidden;
+        }
+        .cta-bg {
+          position: absolute;
+          inset: 0;
           background-size: cover;
           background-position: center;
         }

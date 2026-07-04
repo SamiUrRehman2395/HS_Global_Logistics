@@ -111,6 +111,10 @@ export default function Navbar() {
           width: 44px;
           height: 44px;
           flex-shrink: 0;
+          transition: transform 0.3s ease;
+        }
+        .brand:hover .brand-mark {
+          transform: scale(1.06) rotate(-3deg);
         }
         .brand-mark img {
           width: 100%;

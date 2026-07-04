@@ -113,8 +113,9 @@ export default function Footer() {
           margin-bottom: 12px;
           color: rgba(255,255,255,0.72);
           font-size: 0.94rem;
+          transition: color 0.2s ease, transform 0.2s ease;
         }
-        .footer-col a:hover { color: var(--amber); }
+        .footer-col a:hover { color: var(--amber); transform: translateX(3px); }
         .footer-address { line-height: 1.5; }
         .footer-bottom {
           border-top: 1px solid rgba(255,255,255,0.1);

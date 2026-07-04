@@ -66,7 +66,7 @@ export default function Services() {
             </ul>
             <NavLink to="/contact" className="btn btn-primary" style={{ marginTop: 26 }}>Get Dispatch Support</NavLink>
           </motion.div>
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="service-photo">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="service-photo img-zoom">
             <img src={dispatchImg} alt="HS Global Logistics dispatch and freight coordination" loading="lazy" />
           </motion.div>
         </div>
@@ -82,8 +82,10 @@ export default function Services() {
           </motion.div>
 
           <div className="trailer-detail-grid">
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="card trailer-detail-card">
-              <img src={dryvan} alt="Dry van trailers lined up at HS Global Logistics loading dock" loading="lazy" />
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="card trailer-detail-card hover-lift">
+              <div className="img-zoom">
+                <img src={dryvan} alt="Dry van trailers lined up at HS Global Logistics loading dock" loading="lazy" />
+              </div>
               <div className="trailer-detail-body">
                 <h3>Dry Van Trailers</h3>
                 <p className="text-muted">Durable, weatherproof trailers built for general freight — from retail goods to packaged materials. Available in 48\u2019 and 53\u2019 lengths.</p>
@@ -95,8 +97,10 @@ export default function Services() {
               </div>
             </motion.div>
 
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: 0.1 }} className="card trailer-detail-card">
-              <img src={reefer} alt="Refrigerated reefer trailers with Thermo King cooling units at loading dock" loading="lazy" />
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: 0.1 }} className="card trailer-detail-card hover-lift">
+              <div className="img-zoom">
+                <img src={reefer} alt="Refrigerated reefer trailers with Thermo King cooling units at loading dock" loading="lazy" />
+              </div>
               <div className="trailer-detail-body">
                 <h3>Refrigerated (Reefer) Trailers</h3>
                 <p className="text-muted">Temperature-controlled trailers equipped with reliable cooling units — perfect for food, produce, and pharmaceuticals.</p>
@@ -156,7 +160,7 @@ export default function Services() {
           </motion.div>
           <div className="process-grid">
             {process.map((p, i) => (
-              <motion.div key={p.step} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="process-item">
+              <motion.div key={p.step} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="process-item hover-lift">
                 <span className="process-step">{p.step}</span>
                 <h3>{p.title}</h3>
                 <p className="text-muted">{p.text}</p>
@@ -273,6 +277,10 @@ export default function Services() {
           font-size: 1.6rem;
           color: var(--amber);
           margin-bottom: 14px;
+          transition: transform 0.28s ease;
+        }
+        .process-item:hover .process-step {
+          transform: scale(1.12);
         }
         .process-item h3 { font-size: 1.05rem; margin-bottom: 8px; }
 

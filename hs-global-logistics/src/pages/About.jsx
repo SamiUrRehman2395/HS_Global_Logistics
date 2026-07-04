@@ -78,7 +78,7 @@ export default function About() {
           </motion.div>
           <div className="values-grid">
             {values.map((v, i) => (
-              <motion.div key={v.title} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="card value-card">
+              <motion.div key={v.title} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="card value-card hover-lift">
                 <div className="service-icon">{v.icon}</div>
                 <h3>{v.title}</h3>
                 <p className="text-muted">{v.text}</p>

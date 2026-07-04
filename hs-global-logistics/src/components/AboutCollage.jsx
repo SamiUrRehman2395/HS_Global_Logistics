@@ -5,9 +5,15 @@ import about3 from '../assets/about-3.jpg'
 export default function AboutCollage() {
   return (
     <div className="about-collage">
-      <img src={about1} alt="HS Global Logistics trailer on the road" className="collage-img collage-img--a" loading="lazy" />
-      <img src={about2} alt="HS Global Logistics truck and trailer at sunset" className="collage-img collage-img--b" loading="lazy" />
-      <img src={about3} alt="HS Global Logistics dispatch team member" className="collage-img collage-img--c" loading="lazy" />
+      <div className="collage-img collage-img--a img-zoom">
+        <img src={about1} alt="HS Global Logistics trailer on the road" loading="lazy" />
+      </div>
+      <div className="collage-img collage-img--b img-zoom">
+        <img src={about2} alt="HS Global Logistics truck and trailer at sunset" loading="lazy" />
+      </div>
+      <div className="collage-img collage-img--c img-zoom">
+        <img src={about3} alt="HS Global Logistics dispatch team member" loading="lazy" />
+      </div>
       <div className="collage-badge">
         <span>24/7</span>
         <p>Dispatch Support</p>
@@ -22,12 +28,20 @@ export default function AboutCollage() {
           align-items: end;
         }
         .collage-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
           border-radius: var(--radius-lg);
           box-shadow: var(--shadow-md);
           border: 4px solid var(--white);
+          overflow: hidden;
+          transition: box-shadow 0.28s ease;
+        }
+        .collage-img:hover {
+          box-shadow: var(--shadow-lg);
+        }
+        .collage-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
         .collage-img--a {
           grid-row: 1 / 3;
@@ -50,6 +64,10 @@ export default function AboutCollage() {
           border-radius: var(--radius-md);
           padding: 16px 20px;
           box-shadow: var(--shadow-lg);
+          transition: transform 0.28s ease;
+        }
+        .about-collage:hover .collage-badge {
+          transform: translateY(-4px);
         }
         .collage-badge span {
           display: block;
