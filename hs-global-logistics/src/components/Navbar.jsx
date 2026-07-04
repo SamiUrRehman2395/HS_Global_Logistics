@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const links = [
@@ -11,24 +11,20 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
-  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
-  }, [location.pathname])
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
   }, [open])
 
-  const transparent = isHome && !scrolled && !open
-
   return (
-    <header className={`navbar ${scrolled ? 'is-scrolled' : ''} ${transparent ? 'is-transparent' : ''}`}>
+    <header className={`navbar ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="container navbar-inner">
         <NavLink to="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand-mark">
@@ -88,32 +84,14 @@ export default function Navbar() {
           position: sticky;
           top: 0;
           z-index: 100;
-          background: rgba(247, 249, 252, 0.85);
+          background: rgba(255, 255, 255, 0.97);
           backdrop-filter: blur(10px);
-          border-bottom: 1px solid transparent;
-          transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+          border-bottom: 1px solid var(--border);
+          box-shadow: 0 2px 12px rgba(11,42,74,0.05);
+          transition: box-shadow 0.25s ease;
         }
         .navbar.is-scrolled {
-          background: rgba(255, 255, 255, 0.92);
-          border-bottom-color: var(--border);
-          box-shadow: 0 4px 20px rgba(11,42,74,0.06);
-        }
-        .navbar.is-transparent {
-          background: transparent;
-          backdrop-filter: none;
-          border-bottom-color: transparent;
-          box-shadow: none;
-        }
-        .navbar.is-transparent::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          height: 170px;
-          background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.22) 55%, transparent 100%);
-          pointer-events: none;
-          z-index: -1;
+          box-shadow: 0 4px 20px rgba(11,42,74,0.08);
         }
         .navbar-inner {
           display: flex;
@@ -143,7 +121,6 @@ export default function Navbar() {
           height: 100%;
           border-radius: 50%;
           object-fit: cover;
-          box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
         }
         .brand-text {
           font-family: var(--font-display);
@@ -152,11 +129,6 @@ export default function Navbar() {
           color: var(--navy);
           letter-spacing: 0.01em;
           line-height: 1.1;
-          transition: color 0.25s ease;
-        }
-        .navbar.is-transparent .brand-text {
-          color: #FFFFFF;
-          text-shadow: 0 1px 6px rgba(0,0,0,0.35);
         }
         .brand-text em {
           display: block;
@@ -165,9 +137,6 @@ export default function Navbar() {
           font-size: 0.7rem;
           letter-spacing: 0.16em;
           color: var(--amber-dark);
-        }
-        .navbar.is-transparent .brand-text em {
-          color: var(--amber);
         }
         .nav-links {
           display: flex;
@@ -185,18 +154,6 @@ export default function Navbar() {
         }
         .nav-link:hover { color: var(--navy); background: var(--bg-alt); }
         .nav-link.active { color: var(--navy); background: var(--teal-light); }
-        .navbar.is-transparent .nav-link {
-          color: rgba(255,255,255,0.92);
-          text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-        }
-        .navbar.is-transparent .nav-link:hover {
-          color: #FFFFFF;
-          background: rgba(255,255,255,0.16);
-        }
-        .navbar.is-transparent .nav-link.active {
-          color: #FFFFFF;
-          background: rgba(255,255,255,0.22);
-        }
         .nav-actions {
           display: flex;
           align-items: center;
@@ -211,39 +168,34 @@ export default function Navbar() {
           font-size: 0.9rem;
           color: var(--navy);
           white-space: nowrap;
-          transition: color 0.25s ease;
         }
         .nav-phone svg { color: var(--amber); }
-        .navbar.is-transparent .nav-phone {
-          color: #FFFFFF;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-        }
         .nav-cta { padding: 12px 22px; font-size: 0.88rem; }
+
         .nav-burger {
           display: none;
-          flex-direction: column;
-          justify-content: center;
-          gap: 5px;
+          position: relative;
           width: 40px;
           height: 40px;
           background: none;
           border: none;
+          padding: 0;
         }
         .nav-burger span {
+          position: absolute;
+          left: 8px;
+          right: 8px;
           height: 2.5px;
           background: var(--navy);
           border-radius: 2px;
-          transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+          transition: transform 0.28s ease, opacity 0.2s ease, top 0.28s ease;
         }
-        .navbar.is-transparent .nav-burger span {
-          background: #FFFFFF;
-        }
-        .nav-burger span:nth-child(1) { width: 24px; }
-        .nav-burger span:nth-child(2) { width: 24px; }
-        .nav-burger span:nth-child(3) { width: 16px; align-self: flex-end; }
-        .nav-burger.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); width: 24px; }
+        .nav-burger span:nth-child(1) { top: 14px; }
+        .nav-burger span:nth-child(2) { top: 19px; }
+        .nav-burger span:nth-child(3) { top: 24px; }
+        .nav-burger.is-open span:nth-child(1) { top: 19px; transform: rotate(45deg); }
         .nav-burger.is-open span:nth-child(2) { opacity: 0; }
-        .nav-burger.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); width: 24px; align-self: center; }
+        .nav-burger.is-open span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
 
         .nav-mobile {
           display: none;
@@ -251,7 +203,7 @@ export default function Navbar() {
 
         @media (max-width: 900px) {
           .nav-links, .nav-actions { display: none; }
-          .nav-burger { display: flex; }
+          .nav-burger { display: block; }
           .nav-mobile {
             display: flex;
             flex-direction: column;

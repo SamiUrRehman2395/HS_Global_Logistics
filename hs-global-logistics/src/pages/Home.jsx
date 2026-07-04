@@ -231,7 +231,6 @@ export default function Home() {
       <style>{`
         .hero {
           padding: 0 0 30px;
-          margin-top: -76px;
           background: linear-gradient(180deg, #EEF7F6 0%, var(--bg) 60%);
         }
         .hero-photo-wrap {
