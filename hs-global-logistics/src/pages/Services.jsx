@@ -4,6 +4,8 @@ import RouteLine from '../components/RouteLine.jsx'
 import CTASection from '../components/CTASection.jsx'
 import dryvan from '../assets/dryvan.jpg'
 import reefer from '../assets/reefer.jpg'
+import dryvanSingle from '../assets/dryvan-single.jpg'
+import reeferSingle from '../assets/reefer-single.jpg'
 import dispatchImg from '../assets/dispatch-services.jpg'
 
 const fadeUp = {
@@ -83,8 +85,13 @@ export default function Services() {
 
           <div className="trailer-detail-grid">
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="card trailer-detail-card hover-lift">
-              <div className="img-zoom">
-                <img src={dryvan} alt="Dry van trailers lined up at HS Global Logistics loading dock" loading="lazy" />
+              <div className="trailer-media">
+                <div className="img-zoom trailer-media-main">
+                  <img src={dryvan} alt="Dry van trailers lined up at HS Global Logistics loading dock" loading="lazy" />
+                </div>
+                <div className="img-zoom trailer-media-inset">
+                  <img src={dryvanSingle} alt="Single HS Global Logistics dry van trailer at a loading dock" loading="lazy" />
+                </div>
               </div>
               <div className="trailer-detail-body">
                 <h3>Dry Van Trailers</h3>
@@ -98,8 +105,13 @@ export default function Services() {
             </motion.div>
 
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: 0.1 }} className="card trailer-detail-card hover-lift">
-              <div className="img-zoom">
-                <img src={reefer} alt="Refrigerated reefer trailers with Thermo King cooling units at loading dock" loading="lazy" />
+              <div className="trailer-media">
+                <div className="img-zoom trailer-media-main">
+                  <img src={reefer} alt="Refrigerated reefer trailers with Thermo King cooling units at loading dock" loading="lazy" />
+                </div>
+                <div className="img-zoom trailer-media-inset">
+                  <img src={reeferSingle} alt="Single HS Global Logistics refrigerated reefer trailer at a loading dock" loading="lazy" />
+                </div>
               </div>
               <div className="trailer-detail-body">
                 <h3>Refrigerated (Reefer) Trailers</h3>
@@ -232,9 +244,25 @@ export default function Services() {
           grid-template-columns: 1fr 1fr;
           gap: 28px;
         }
-        .trailer-detail-card { overflow: hidden; }
-        .trailer-detail-card img { width: 100%; height: 260px; object-fit: cover; }
-        .trailer-detail-body { padding: 26px 28px 30px; }
+        .trailer-detail-card { overflow: visible; }
+        .trailer-media {
+          position: relative;
+          border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+          overflow: hidden;
+        }
+        .trailer-media-main img { width: 100%; height: 260px; object-fit: cover; display: block; }
+        .trailer-media-inset {
+          position: absolute;
+          right: 18px;
+          bottom: -28px;
+          width: 46%;
+          border-radius: var(--radius-md);
+          border: 4px solid var(--white);
+          box-shadow: var(--shadow-md);
+          z-index: 2;
+        }
+        .trailer-media-inset img { width: 100%; height: 90px; object-fit: cover; display: block; }
+        .trailer-detail-body { padding: 44px 28px 30px; }
         .trailer-detail-body h3 { margin-bottom: 10px; }
         .feature-list-sm {
           margin-top: 16px;

@@ -11,16 +11,16 @@ const container = {
 }
 
 const itemA = {
-  hidden: { opacity: 0, x: -30, y: 10 },
-  show: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 const itemB = {
-  hidden: { opacity: 0, y: -30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 const itemC = {
-  hidden: { opacity: 0, x: 30, y: 20 },
-  show: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
 export default function AboutCollage() {
@@ -121,24 +121,18 @@ export default function AboutCollage() {
         }
         @media (max-width: 720px) {
           .about-collage {
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            grid-template-columns: 1fr;
+            gap: 20px;
             padding: 10px 8px 46px 8px;
           }
-          .collage-img--a {
-            grid-column: 1 / 2;
-            grid-row: 1 / 3;
-            align-self: stretch;
-          }
-          .collage-img--b {
-            grid-column: 2 / 3;
-            transform: none;
-          }
+          .collage-img--a,
+          .collage-img--b,
           .collage-img--c {
-            grid-column: 2 / 3;
+            grid-column: 1 / 2;
+            align-self: stretch;
             transform: none;
           }
-          .collage-badge { left: 0; bottom: 8px; padding: 12px 16px; }
+          .collage-badge { left: 0; bottom: 10px; padding: 12px 16px; }
         }
       `}</style>
     </motion.div>
