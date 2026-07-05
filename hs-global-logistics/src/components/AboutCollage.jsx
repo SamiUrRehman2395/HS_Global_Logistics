@@ -46,7 +46,7 @@ export default function AboutCollage() {
         initial={{ opacity: 0, scale: 0.7 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5, delay: 0.65, ease: 'backOut' }}
+        transition={{ duration: 0.5, delay: 0.75, ease: 'backOut' }}
       >
         <span>24/7</span>
         <p>Dispatch Support</p>
@@ -56,11 +56,10 @@ export default function AboutCollage() {
         .about-collage {
           position: relative;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto auto;
-          gap: 26px;
+          grid-template-columns: repeat(3, 1fr);
           align-items: end;
-          padding: 8px 8px 34px 8px;
+          gap: 22px;
+          padding: 10px 8px 40px 8px;
         }
         .collage-img {
           border-radius: var(--radius-lg);
@@ -79,31 +78,32 @@ export default function AboutCollage() {
           object-fit: cover;
           display: block;
         }
+        /* Aspect ratios match each source photo's real proportions so the
+           full picture shows — no awkward cropping. */
         .collage-img--a {
-          grid-column: 1 / 2;
-          grid-row: 1 / 3;
-          aspect-ratio: 4 / 5;
+          aspect-ratio: 683 / 1024;
+          align-self: end;
         }
         .collage-img--b {
-          grid-column: 2 / 3;
-          grid-row: 1 / 2;
-          aspect-ratio: 4 / 3;
+          aspect-ratio: 900 / 1650;
           align-self: start;
+          transform: translateY(6px);
         }
         .collage-img--c {
-          grid-column: 2 / 3;
-          grid-row: 2 / 3;
-          aspect-ratio: 4 / 3;
+          aspect-ratio: 683 / 1024;
+          align-self: end;
+          transform: translateY(24px);
         }
         .collage-badge {
           position: absolute;
           left: 4px;
-          bottom: 0;
+          bottom: 6px;
           background: var(--navy);
           color: var(--white);
           border-radius: var(--radius-md);
           padding: 16px 20px;
           box-shadow: var(--shadow-lg);
+          z-index: 2;
         }
         .collage-badge span {
           display: block;
@@ -119,9 +119,26 @@ export default function AboutCollage() {
           margin-top: 4px;
           white-space: nowrap;
         }
-        @media (max-width: 640px) {
-          .about-collage { gap: 16px; padding: 8px 8px 30px 8px; }
-          .collage-badge { left: 0; padding: 12px 16px; }
+        @media (max-width: 720px) {
+          .about-collage {
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 10px 8px 46px 8px;
+          }
+          .collage-img--a {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            align-self: stretch;
+          }
+          .collage-img--b {
+            grid-column: 2 / 3;
+            transform: none;
+          }
+          .collage-img--c {
+            grid-column: 2 / 3;
+            transform: none;
+          }
+          .collage-badge { left: 0; bottom: 8px; padding: 12px 16px; }
         }
       `}</style>
     </motion.div>

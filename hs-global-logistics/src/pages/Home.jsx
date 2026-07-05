@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import RouteLine from '../components/RouteLine.jsx'
 import CTASection from '../components/CTASection.jsx'
-import TestimonialCarousel from '../components/TestimonialCarousel.jsx'
+import TestimonialMarquee from '../components/TestimonialMarquee.jsx'
 import FAQAccordion from '../components/FAQAccordion.jsx'
 import AboutCollage from '../components/AboutCollage.jsx'
 import dryvan from '../assets/dryvan.jpg'
@@ -208,8 +208,8 @@ export default function Home() {
             <h2>Built on Trust &amp; Performance</h2>
             <p className="text-muted" style={{ marginTop: 12 }}>From independent drivers to growing fleets, our clients rely on us every mile.</p>
           </motion.div>
-          <TestimonialCarousel />
         </div>
+        <TestimonialMarquee />
       </section>
 
       <CTASection />
