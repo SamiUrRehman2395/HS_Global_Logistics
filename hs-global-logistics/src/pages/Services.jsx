@@ -4,9 +4,8 @@ import RouteLine from '../components/RouteLine.jsx'
 import CTASection from '../components/CTASection.jsx'
 import dryvan from '../assets/dryvan.jpg'
 import reefer from '../assets/reefer.jpg'
-import dryvanSingle from '../assets/dryvan-single.jpg'
-import reeferSingle from '../assets/reefer-single.jpg'
 import dispatchImg from '../assets/dispatch-services.jpg'
+import fleetSupportImg from '../assets/fleet-support.jpg'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -85,13 +84,8 @@ export default function Services() {
 
           <div className="trailer-detail-grid">
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="card trailer-detail-card hover-lift">
-              <div className="trailer-media">
-                <div className="img-zoom trailer-media-main">
-                  <img src={dryvan} alt="Dry van trailers lined up at HS Global Logistics loading dock" loading="lazy" />
-                </div>
-                <div className="img-zoom trailer-media-inset">
-                  <img src={dryvanSingle} alt="Single HS Global Logistics dry van trailer at a loading dock" loading="lazy" />
-                </div>
+              <div className="img-zoom">
+                <img src={dryvan} alt="Dry van trailers lined up at HS Global Logistics loading dock" loading="lazy" />
               </div>
               <div className="trailer-detail-body">
                 <h3>Dry Van Trailers</h3>
@@ -105,13 +99,8 @@ export default function Services() {
             </motion.div>
 
             <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} transition={{ delay: 0.1 }} className="card trailer-detail-card hover-lift">
-              <div className="trailer-media">
-                <div className="img-zoom trailer-media-main">
-                  <img src={reefer} alt="Refrigerated reefer trailers with Thermo King cooling units at loading dock" loading="lazy" />
-                </div>
-                <div className="img-zoom trailer-media-inset">
-                  <img src={reeferSingle} alt="Single HS Global Logistics refrigerated reefer trailer at a loading dock" loading="lazy" />
-                </div>
+              <div className="img-zoom">
+                <img src={reefer} alt="Refrigerated reefer trailers with Thermo King cooling units at loading dock" loading="lazy" />
               </div>
               <div className="trailer-detail-body">
                 <h3>Refrigerated (Reefer) Trailers</h3>
@@ -130,23 +119,8 @@ export default function Services() {
       {/* FLEET SUPPORT */}
       <section className="section">
         <div className="container grid-2">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="service-visual">
-            <svg viewBox="0 0 480 360" fill="none">
-              <rect width="480" height="360" rx="24" fill="#FFF1E8" />
-              <rect x="70" y="70" width="150" height="110" rx="12" fill="#FFFFFF" stroke="#FF7A3D" strokeWidth="2" />
-              <rect x="90" y="94" width="110" height="10" rx="3" fill="#0B2A4A" />
-              <rect x="90" y="114" width="80" height="8" rx="3" fill="#5B6B82" />
-              <rect x="90" y="130" width="90" height="8" rx="3" fill="#5B6B82" />
-              <rect x="90" y="146" width="60" height="8" rx="3" fill="#5B6B82" />
-              <rect x="260" y="130" width="150" height="110" rx="12" fill="#FFFFFF" stroke="#0FB5AE" strokeWidth="2" />
-              <circle cx="335" cy="170" r="24" fill="#E4F8F6" />
-              <path d="M325 170l7 7 14-14" stroke="#0FB5AE" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <rect x="285" y="205" width="100" height="8" rx="3" fill="#5B6B82" />
-              <rect x="130" y="230" width="150" height="80" rx="12" fill="#0B2A4A" />
-              <rect x="150" y="252" width="70" height="9" rx="3" fill="#FF7A3D" />
-              <rect x="150" y="270" width="100" height="7" rx="3" fill="rgba(255,255,255,0.5)" />
-              <rect x="150" y="284" width="80" height="7" rx="3" fill="rgba(255,255,255,0.5)" />
-            </svg>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp} className="service-photo img-zoom">
+            <img src={fleetSupportImg} alt="HS Global Logistics dispatcher monitoring loads and driver operations from the dispatch office" loading="lazy" />
           </motion.div>
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}>
             <div className="eyebrow">03 — Fleet Support Solutions</div>
@@ -244,25 +218,9 @@ export default function Services() {
           grid-template-columns: 1fr 1fr;
           gap: 28px;
         }
-        .trailer-detail-card { overflow: visible; }
-        .trailer-media {
-          position: relative;
-          border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-          overflow: hidden;
-        }
-        .trailer-media-main img { width: 100%; height: 260px; object-fit: cover; display: block; }
-        .trailer-media-inset {
-          position: absolute;
-          right: 18px;
-          bottom: -28px;
-          width: 46%;
-          border-radius: var(--radius-md);
-          border: 4px solid var(--white);
-          box-shadow: var(--shadow-md);
-          z-index: 2;
-        }
-        .trailer-media-inset img { width: 100%; height: 90px; object-fit: cover; display: block; }
-        .trailer-detail-body { padding: 44px 28px 30px; }
+        .trailer-detail-card { overflow: hidden; }
+        .trailer-detail-card img { width: 100%; height: 260px; object-fit: cover; }
+        .trailer-detail-body { padding: 26px 28px 30px; }
         .trailer-detail-body h3 { margin-bottom: 10px; }
         .feature-list-sm {
           margin-top: 16px;
