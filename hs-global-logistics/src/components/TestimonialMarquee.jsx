@@ -18,13 +18,20 @@ function Avatar({ index }) {
   )
 }
 
+import emmaCarterPhoto from '../assets/testimonials/emma_carter.avif'
+import ethanWilsonPhoto from '../assets/testimonials/ethan_wilson.avif'
+import jamesTurnerPhoto from '../assets/testimonials/james_turner.avif'
+import jasonBevanPhoto from '../assets/testimonials/olivia_brown.avif'
+import davidLeePhoto from '../assets/testimonials/david_lee.avif'
+import noahBrooksPhoto from '../assets/testimonials/noah_brooks.avif'
+
 const testimonials = [
-  { name: 'Emma Carter', role: 'Logistics Manager', quote: 'HS Global keeps our trucks moving and our profits growing.' },
-  { name: 'Ethan Wilson', role: 'Supply Head', quote: 'Reliable dispatch, better rates, and zero stress. Exactly what we needed.' },
-  { name: 'James Turner', role: 'Owner', quote: 'Clear communication, fast support, and no missed loads.' },
-  { name: 'Olivia Brown', role: 'Independent Driver', quote: 'They handle everything so we can focus on the road.' },
-  { name: 'David Lee', role: 'Small Fleet Owner', quote: 'Consistent, professional, and easy to work with.' },
-  { name: 'Noah Brooks', role: 'Operations Director', quote: 'Top-quality trailers and smooth service every time.' },
+  { name: 'Emma Carter', role: 'Logistics Manager', quote: 'HS Global keeps our trucks moving and our profits growing.', photo: emmaCarterPhoto },
+  { name: 'Ethan Wilson', role: 'Supply Head', quote: 'Reliable dispatch, better rates, and zero stress. Exactly what we needed.', photo: ethanWilsonPhoto },
+  { name: 'James Turner', role: 'Owner', quote: 'Clear communication, fast support, and no missed loads.', photo: jamesTurnerPhoto },
+  { name: 'Jason Bevan', role: 'Independent Driver', quote: 'They handle everything so we can focus on the road.', photo: jasonBevanPhoto },
+  { name: 'David Lee', role: 'Small Fleet Owner', quote: 'Consistent, professional, and easy to work with.', photo: davidLeePhoto },
+  { name: 'Noah Brooks', role: 'Operations Director', quote: 'Top-quality trailers and smooth service every time.', photo: noahBrooksPhoto },
   { name: 'Sophia Martinez', role: 'Dispatcher', quote: 'Fast responses and fair rates — a genuine partner, not just a vendor.' },
   { name: 'Liam Anderson', role: 'Owner-Operator', quote: 'My go-to for trailer rentals whenever I need one on short notice.' },
 ]
@@ -37,7 +44,11 @@ function Card({ t, i }) {
       </svg>
       <p className="tm-text">{t.quote}</p>
       <div className="tm-person">
-        <Avatar index={i} />
+        {t.photo ? (
+          <img className="avatar-photo" src={t.photo} alt={t.name} />
+        ) : (
+          <Avatar index={i} />
+        )}
         <div>
           <p className="tm-name">{t.name}</p>
           <p className="tm-role">{t.role}</p>
@@ -111,6 +122,17 @@ export default function TestimonialMarquee() {
           transition: transform 0.3s ease;
         }
         .tm-card:hover .avatar-svg {
+          transform: scale(1.08);
+        }
+        .avatar-photo {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          object-fit: cover;
+          flex-shrink: 0;
+          transition: transform 0.3s ease;
+        }
+        .tm-card:hover .avatar-photo {
           transform: scale(1.08);
         }
         .tm-name {

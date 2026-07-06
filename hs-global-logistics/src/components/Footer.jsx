@@ -48,7 +48,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>&copy; {new Date().getFullYear()} HS Global Logistics. All rights reserved.</p>
+          <p>&copy; 2022 HS Global Logistics. All rights reserved.</p>
           <p>Dispatch Services &amp; Trailer Rentals — Nationwide</p>
         </div>
       </div>
