@@ -28,13 +28,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Please provide a valid email address.' })
     }
 
-    const {
-      SMTP_HOST,
-      SMTP_PORT,
-      SMTP_USER,
-      SMTP_PASS,
-      SMTP_SECURE,
-    } = process.env
+    const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE } = process.env
 
     if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
       console.error('Missing SMTP environment variables.')
@@ -43,14 +37,18 @@ export default async function handler(req, res) {
 
     const transporter = nodemailer.createTransport({
       host: SMTP_HOST,
-      port: Number(SMTP_PORT) || 587,
+      port: Number(SMTP_PORT) || 465,
       secure: SMTP_SECURE === 'true',
       auth: { user: SMTP_USER, pass: SMTP_PASS },
+      tls: { rejectUnauthorized: false },
     })
 
-    const safeName = escapeHtml(name)
-    const safeEmail = escapeHtml(email)
-    const safePhone = escapeHtml(phone || 'Not provided')
+    // Verify connection before sending
+    await transporter.verify()
+
+    const safeName    = escapeHtml(name)
+    const safeEmail   = escapeHtml(email)
+    const safePhone   = escapeHtml(phone || 'Not provided')
     const safeService = escapeHtml(service || 'General Inquiry')
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />')
 
@@ -73,7 +71,7 @@ export default async function handler(req, res) {
       `,
     })
 
-    // 2. Confirmation to the person who submitted the form
+    // 2. Confirmation to the person who submitted
     await transporter.sendMail({
       from: `"HS Global Logistics" <${SMTP_USER}>`,
       to: email,
@@ -88,8 +86,14 @@ export default async function handler(req, res) {
     })
 
     return res.status(200).json({ ok: true })
+
   } catch (err) {
     console.error('Contact form error:', err)
-    return res.status(500).json({ error: 'We could not send your message right now. Please try again or email us directly.' })
+    // Return actual error so we can debug
+    return res.status(500).json({
+      error: 'We could not send your message right now. Please try again or email us directly.',
+      debug: err.message,
+      code: err.code,
+    })
   }
 }
