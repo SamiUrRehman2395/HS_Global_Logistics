@@ -72,7 +72,7 @@ export default function Contact() {
               <div className="info-icon">📞</div>
               <div>
                 <h3>Call Us</h3>
-                <p className="text-muted"><a href="tel:+18323033592">+1 (832) 303 3592</a></p>
+                <p className="text-muted"><a href="tel:+12065698093">(206) 569 8093</a></p>
               </div>
             </div>
             <div className="card info-card">

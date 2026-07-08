@@ -82,7 +82,7 @@ export default async function handler(req, res) {
         <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
           <h2 style="color:#0B2A4A;">Thanks for reaching out, ${safeName}!</h2>
           <p>We\u2019ve received your request about <strong>${safeService}</strong> and a member of our team will contact you within one business day.</p>
-          <p style="margin-top:24px;">HS Global Logistics<br />101 Continental Blvd Ste 260, El Segundo, CA 90245<br />+1 (832) 303 3592<br />sales@hsgloballogistic.com</p>
+          <p style="margin-top:24px;">HS Global Logistics<br />101 Continental Blvd Ste 260, El Segundo, CA 90245<br />(206) 569 8093<br />sales@hsgloballogistic.com</p>
         </div>
       `,
     })

@@ -41,14 +41,14 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Contact</h4>
           <a href="mailto:sales@hsgloballogistic.com">sales@hsgloballogistic.com</a>
-          <a href="tel:+18323033592">+1 (832) 303 3592</a>
+          <a href="tel:+12065698093">(206) 569 8093</a>
           <p className="footer-address">101 Continental Blvd Ste 260,<br />El Segundo, CA 90245, United States</p>
         </div>
       </div>
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>&copy; 2022 HS Global Logistics. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} HS Global Logistics. All rights reserved.</p>
           <p>Dispatch Services &amp; Trailer Rentals — Nationwide</p>
         </div>
       </div>
