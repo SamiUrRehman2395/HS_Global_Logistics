@@ -10,6 +10,37 @@ function escapeHtml(str = '') {
     .replace(/"/g, '&quot;')
 }
 
+async function createWorkingTransporter(user, pass) {
+  // Try multiple Titan SMTP configurations
+  const configs = [
+    { host: 'smtp.titan.email', port: 465, secure: true },
+    { host: 'smtp.titan.email', port: 587, secure: false },
+    { host: 'smtp0101.titan.email', port: 465, secure: true },
+    { host: 'smtp0101.titan.email', port: 587, secure: false },
+  ]
+
+  for (const cfg of configs) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: cfg.host,
+        port: cfg.port,
+        secure: cfg.secure,
+        auth: { user, pass },
+        tls: { rejectUnauthorized: false },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 8000,
+      })
+      await transporter.verify()
+      console.log(`Connected via ${cfg.host}:${cfg.port}`)
+      return transporter
+    } catch (e) {
+      console.log(`Failed ${cfg.host}:${cfg.port} — ${e.message}`)
+    }
+  }
+  throw new Error('Could not connect to any Titan SMTP server. Check your email and password.')
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
@@ -28,23 +59,13 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Please provide a valid email address.' })
     }
 
-    const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE } = process.env
+    const { SMTP_USER, SMTP_PASS } = process.env
 
-    if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
-      console.error('Missing SMTP environment variables.')
+    if (!SMTP_USER || !SMTP_PASS) {
       return res.status(500).json({ error: 'Email service is not configured yet. Please call or email us directly.' })
     }
 
-    const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: Number(SMTP_PORT) || 465,
-      secure: SMTP_SECURE === 'true',
-      auth: { user: SMTP_USER, pass: SMTP_PASS },
-      tls: { rejectUnauthorized: false },
-    })
-
-    // Verify connection before sending
-    await transporter.verify()
+    const transporter = await createWorkingTransporter(SMTP_USER, SMTP_PASS)
 
     const safeName    = escapeHtml(name)
     const safeEmail   = escapeHtml(email)
@@ -52,7 +73,6 @@ export default async function handler(req, res) {
     const safeService = escapeHtml(service || 'General Inquiry')
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />')
 
-    // 1. Notify the sales team
     await transporter.sendMail({
       from: `"HS Global Logistics Website" <${SMTP_USER}>`,
       to: TO_EMAIL,
@@ -71,7 +91,6 @@ export default async function handler(req, res) {
       `,
     })
 
-    // 2. Confirmation to the person who submitted
     await transporter.sendMail({
       from: `"HS Global Logistics" <${SMTP_USER}>`,
       to: email,
@@ -89,7 +108,6 @@ export default async function handler(req, res) {
 
   } catch (err) {
     console.error('Contact form error:', err)
-    // Return actual error so we can debug
     return res.status(500).json({
       error: 'We could not send your message right now. Please try again or email us directly.',
       debug: err.message,
