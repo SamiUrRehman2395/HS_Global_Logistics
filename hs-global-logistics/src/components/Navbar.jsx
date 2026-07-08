@@ -6,6 +6,7 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
   { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
@@ -73,7 +74,6 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
-          <NavLink to="/contact" className="nav-mobile-link" onClick={() => setOpen(false)}>Contact</NavLink>
         </nav>
         <a href="tel:+12065698093" className="btn btn-ghost btn-block">Call (206) 569 8093</a>
         <NavLink to="/contact" className="btn btn-primary btn-block" onClick={() => setOpen(false)}>Request A Quote</NavLink>
@@ -202,8 +202,9 @@ export default function Navbar() {
         }
 
         @media (max-width: 900px) {
-          .nav-links, .nav-actions { display: none; }
-          .nav-burger { display: block; }
+          .nav-links { display: none; }
+          .nav-actions { display: none; }
+          .nav-burger { display: flex; align-items: center; justify-content: center; cursor: pointer; }
           .nav-mobile {
             display: flex;
             flex-direction: column;
