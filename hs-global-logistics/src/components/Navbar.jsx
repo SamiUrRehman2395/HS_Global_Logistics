@@ -144,6 +144,11 @@ export default function Navbar() {
           flex: 1;
           justify-content: center;
         }
+        @media (max-width: 900px) {
+          .nav-links { display: none !important; }
+          .nav-actions { display: none !important; }
+          .nav-phone { display: none !important; }
+        }
         .nav-link {
           padding: 10px 16px;
           border-radius: 999px;
